@@ -92,6 +92,10 @@ public class CircleGeometry {
         return radius_;
     }
 
+    public void setRadians(double radian){
+        radians_ = WrapRadians(radian);
+    }
+
     public double WrapRadians(double radians) {
         // Wraps radians to be between -pi and pi
         radians = radians % k2Pi;

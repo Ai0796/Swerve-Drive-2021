@@ -12,21 +12,27 @@ import edu.wpi.first.wpilibj.SPI.Port;
  */
 
 public class RobotMap {
+
+    public static class Common {
+        //Put stuff in here that can be used for all classes, like the refresh rate
+        public static final double UPDATE_PERIOD = 1/60;
+    }
+
     public static class Camera {
         public static final double PIPELINE = 0.0;
         public static final double OFFSET_SCALE = -0.05285; // TODO: tune this with more datapoints
     }
 
     public static class SwerveDrive {
-        public static final int UL_DRIVE = 12;
-        public static final int UR_DRIVE = 13;
-        public static final int LL_DRIVE = 14;
-        public static final int LR_DRIVE = 15;
+        public static final int UL_DRIVE_MOTOR = 12;
+        public static final int UR_DRIVE_MOTOR = 13;
+        public static final int LL_DRIVE_MOTOR = 14;
+        public static final int LR_DRIVE_MOTOR = 15;
 
-        public static final int UL_ENCODER = 16;
-        public static final int UR_ENCODER = 17;
-        public static final int LL_ENCODER = 18;
-        public static final int LR_ENCODER = 19;
+        public static final int UL_ENCODER_MOTOR = 16;
+        public static final int UR_ENCODER_MOTOR = 17;
+        public static final int LL_ENCODER_MOTOR = 18;
+        public static final int LR_ENCODER_MOTOR = 19;
 
         //Current location in radians from -pi to pi
         public static final double UL_Position = 0;
@@ -34,14 +40,29 @@ public class RobotMap {
         public static final double LL_Position = 0;
         public static final double LR_Position = 0;
 
+        //We're using these: https://www.andymark.com/products/ma3-absolute-encoder-with-cable Encoders
+        public static final int UL_ENCODER = 0;
+        public static final int UR_ENCODER = 1;
+        public static final int LL_ENCODER = 2;
+        public static final int LR_ENCODER = 3;
+        //Encoder Voltage
+        public static final double MAX_ENCODER_VOLTAGE = 5;
+
         //Swerve Gear radius in inches
         public static final double SwerveGearRadius = 1.75;
         
         //Wheel size radius in inches
         public static final double WheelRadius = 2;
 
+        //Wheelbase size
+        public static final double wheelbaseWidth = 2; //Change when final robot finished
+        public static final double wheelbaseHeight = 2; //Change when final robot finished
+
         public static final boolean LEFT_IS_INVERTED = false;
         public static final boolean RIGHT_IS_INVERTED = true;
+
+        //Gear ratio between Swerve gear and encoder gear
+        public static final double ENCODER_GEAR_RATIO = 1;
     }
 
     public static class Hopper {
@@ -235,7 +256,7 @@ public class RobotMap {
 
         public static final int LX = 0;
         public static final int LY = 1; // Arcade drive
-        public static final int RX = 4; // Arcade drive
+        public static final int RX = 2; // Arcade drive
 
         public static final int RY = 5;
         public static final int LT = 2;

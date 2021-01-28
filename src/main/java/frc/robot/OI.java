@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotMap.SwerveDrive;
 import frc.robot.helpers.ControllerWrapper;
 
 /**
@@ -25,7 +26,9 @@ public class OI {
         SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
         SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
 
-        // updateSD();
+        Robot.swerveDrive.drive();
+
+        updateSD();
         // updateSDTesting();
     }
 
@@ -36,20 +39,22 @@ public class OI {
     // /**
     //  * Used for updating the SmartDashboard during the match.
     //  */
-    // public static void updateSD() {
-    //     SmartDashboard.putBoolean("Bot Left Sensor", Robot.hopper.getBotLeftSensor());
-    //     SmartDashboard.putBoolean("Bot Right Sensor", Robot.hopper.getBotRightSensor());
-    //     SmartDashboard.putBoolean("Mid Sensor", Robot.hopper.getMidLimit());
-    //     SmartDashboard.putBoolean("Top Sensor", Robot.hopper.getTopLimit());
+    public static void updateSD() {
 
-    //     SmartDashboard.putBoolean("Shooter running?", Robot.shooter.getRPM() > 0);
-    //     SmartDashboard.putBoolean("At target", Robot.shooter.atTarget());
+        Robot.swerveDrive.updateSD();
+        // SmartDashboard.putBoolean("Bot Left Sensor", Robot.hopper.getBotLeftSensor());
+        // SmartDashboard.putBoolean("Bot Right Sensor", Robot.hopper.getBotRightSensor());
+        // SmartDashboard.putBoolean("Mid Sensor", Robot.hopper.getMidLimit());
+        // SmartDashboard.putBoolean("Top Sensor", Robot.hopper.getTopLimit());
 
-    //     SmartDashboard.putBoolean("Alt Mode", operator.isAltMode());
+        // SmartDashboard.putBoolean("Shooter running?", Robot.shooter.getRPM() > 0);
+        // SmartDashboard.putBoolean("At target", Robot.shooter.atTarget());
 
-    //     SmartDashboard.putNumber("Shooter RPM", Robot.shooter.getRPM());
+        // SmartDashboard.putBoolean("Alt Mode", operator.isAltMode());
 
-    // }
+        // SmartDashboard.putNumber("Shooter RPM", Robot.shooter.getRPM());
+
+    }
 
     // /**
     //  * Used for updating the SmartDashboard during testing/troubleshooting.
