@@ -1,11 +1,16 @@
 package frc.robot;
 
-import com.fasterxml.jackson.core.sym.Name;
+
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
+import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 
 
 public class SwerveDriveModule {
@@ -19,6 +24,23 @@ public class SwerveDriveModule {
     CANEncoder driveEncoder;
     String Name;
 
+    private final PIDController drivePIDController = new PIDController(
+        RobotMap.SwerveDrive.DRIVE_P, 
+        RobotMap.SwerveDrive.DRIVE_I, 
+        RobotMap.SwerveDrive.DRIVE_D);
+
+    private final ProfiledPIDController swervePIDController =
+        new ProfiledPIDController(
+            RobotMap.SwerveDrive.SWERVE_P,
+            RobotMap.SwerveDrive.SWERVE_I,
+            RobotMap.SwerveDrive.SWERVE_D,
+            new TrapezoidProfile.Constraints(
+                RobotMap.SwerveDrive.ModuleMaxAngularVelocity, RobotMap.SwerveDrive.ModuleMaxAngularAcceleration));
+
+  // Gains are for example purposes only - must be determined for your own robot!
+  private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(1, 3);
+  private final SimpleMotorFeedforward m_swerveFeedforward = new SimpleMotorFeedforward(1, 0.5);
+
     double targetWheelSpeed = 0;
     double targetEncoderLocation = 0;
 
@@ -27,6 +49,7 @@ public class SwerveDriveModule {
 
     public SwerveDriveModule (CircleGeometry Encoder_Gear, CANSparkMax Drive_Motor, CANSparkMax Encoder_Motor, double x_Distance, double y_Distance, AnalogEncoder Encoder, String name){
         
+        //Set Variables
         EncoderGear = Encoder_Gear;
         DriveMotor = Drive_Motor;
         EncoderMotor = Encoder_Motor;
@@ -36,6 +59,12 @@ public class SwerveDriveModule {
         swerveEncoder.setDistancePerRotation(RobotMap.SwerveDrive.ENCODER_GEAR_RATIO);
         driveEncoder = Drive_Motor.getEncoder();
         Name = name;
+
+        //Initialize Encoder Distances
+        driveEncoder.setDistancePerPulse(2 * Math.PI * RobotMap.SwerveDrive.WHEEL_RADIUS) / RobotMap.SwerveDrive.ENCODER_RESOLUTION);
+
+        //Limit Swerve PID Controller to (-pi, pi)
+        swervePIDController.enableContinuousInput(-Math.PI, Math.PI);
     }
 
     public void setVelocity(double x, double y, double r){
@@ -45,6 +74,31 @@ public class SwerveDriveModule {
             targetWheelSpeed *= -1;
             targetEncoderLocation = EncoderGear.WrapRadians(targetEncoderLocation + Math.PI);
         }
+    }
+
+    /*Copied for WPILIB Example Swerve Drive
+    */
+
+    public void setDesiredVelocity(){
+        double swerveVelocity;
+
+        // Calculate the drive output from the drive PID controller.
+        final double driveOutput =
+        drivePIDController.calculate(driveEncoder.getVelocity(), targetWheelSpeed);
+
+        final double driveFeedforward = m_driveFeedforward.calculate(targetWheelSpeed);
+
+        // Calculate the turning motor output from the turning PID controller.
+        swerveVelocity = (getSwerveEncoderAngleRadians()-EncoderGear.getRadians())/RobotMap.Common.UPDATE_PERIOD;
+        EncoderGear.setRadians(getSwerveEncoderAngleRadians());
+        final double turnOutput =
+            swervePIDController.calculate(EncoderGear.getRadians(), targetEncoderLocation);
+
+        final double swerveFeedforward =
+            m_swerveFeedforward.calculate(swerveVelocity);
+
+        setDriveSpeed(driveOutput + driveFeedforward);
+        setEncoderSpeed(turnOutput + swerveFeedforward);
     }
 
     //Checks if turning the other way and inversing speed would be faster
