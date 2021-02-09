@@ -35,7 +35,7 @@ public class SwerveDriveModule {
             RobotMap.SwerveDrive.SWERVE_I,
             RobotMap.SwerveDrive.SWERVE_D,
             new TrapezoidProfile.Constraints(
-                RobotMap.SwerveDrive.ModuleMaxAngularVelocity, RobotMap.SwerveDrive.ModuleMaxAngularAcceleration));
+                RobotMap.SwerveDrive.MAX_SWERVE_ANGULAR_VELOCITY, RobotMap.SwerveDrive.MAX_SWERVE_ANGULAR_ACCELERATION));
 
   // Gains are for example purposes only - must be determined for your own robot!
   private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(1, 3);
@@ -61,7 +61,7 @@ public class SwerveDriveModule {
         Name = name;
 
         //Initialize Encoder Distances
-        driveEncoder.setDistancePerPulse(2 * Math.PI * RobotMap.SwerveDrive.WHEEL_RADIUS) / RobotMap.SwerveDrive.ENCODER_RESOLUTION);
+        driveEncoder.setPositionConversionFactor(2 * Math.PI * RobotMap.SwerveDrive.WHEEL_RADIUS / RobotMap.SwerveDrive.ENCODER_RESOLUTION);
 
         //Limit Swerve PID Controller to (-pi, pi)
         swervePIDController.enableContinuousInput(-Math.PI, Math.PI);
@@ -97,8 +97,10 @@ public class SwerveDriveModule {
         final double swerveFeedforward =
             m_swerveFeedforward.calculate(swerveVelocity);
 
-        setDriveSpeed(driveOutput + driveFeedforward);
-        setEncoderSpeed(turnOutput + swerveFeedforward);
+        // setDriveSpeed(driveOutput + driveFeedforward);
+        // setEncoderSpeed(turnOutput + swerveFeedforward);
+        // setDriveSpeed(0.5);
+        // setEncoderSpeed();
     }
 
     //Checks if turning the other way and inversing speed would be faster
@@ -135,10 +137,15 @@ public class SwerveDriveModule {
     //This function call is called repeatedly even with no changes to velocity
     public void goToVelocity(){
 
-        //PID Needs testing
-        double encoderSpeed = PID(targetEncoderLocation, 1, 0, 0);
-        setDriveSpeed(targetWheelSpeed);
-        setEncoderSpeed(encoderSpeed);
+        // //PID Needs testing
+        // double encoderSpeed = PID(targetEncoderLocation, 1, 0, 0);
+        // setDriveSpeed(targetWheelSpeed);
+        // setEncoderSpeed(encoderSpeed);
+        setDesiredVelocity();
+    }
+
+    public void divideVelocity(double denominator){
+        targetWheelSpeed /= denominator;
     }
 
     public void setEncoderSpeed(double speed){
@@ -187,6 +194,7 @@ public class SwerveDriveModule {
     public void UpdateSD(){
         SmartDashboard.putNumber("Current Speed of " + Name, getCurrentSpeed());
         SmartDashboard.putNumber("Current Encoder Rotation of " + Name, getSwerveEncoderAngleDegrees());
+        SmartDashboard.putNumber("SparkMaxPower", DriveMotor.get());
         SmartDashboard.putNumber("Target Speed of " + Name, getTargetSpeed());
         SmartDashboard.putNumber("Target Angle of " + Name, Math.toDegrees(getTargetEncoderLocation()));
     }

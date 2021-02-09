@@ -45,8 +45,15 @@ public class RobotMap {
         public static final int UR_ENCODER = 1;
         public static final int LL_ENCODER = 2;
         public static final int LR_ENCODER = 3;
+
         //Encoder Voltage
         public static final double MAX_ENCODER_VOLTAGE = 5;
+
+        //WHEEL RADIUS
+        public static final double WHEEL_RADIUS = 2;
+
+        //Drive encoder
+        public static final double ENCODER_RESOLUTION = 4096;
 
         //Swerve Gear radius in inches
         public static final double SwerveGearRadius = 1.75;
@@ -56,13 +63,25 @@ public class RobotMap {
 
         //Wheelbase size
         public static final double wheelbaseWidth = 2; //Change when final robot finished
-        public static final double wheelbaseHeight = 2; //Change when final robot finished
+        public static final double wheelbaseHeight = 3; //Change when final robot finished
 
         public static final boolean LEFT_IS_INVERTED = false;
         public static final boolean RIGHT_IS_INVERTED = true;
 
         //Gear ratio between Swerve gear and encoder gear
         public static final double ENCODER_GEAR_RATIO = 1;
+
+        //PID
+        public static final double DRIVE_P = 1;
+        public static final double DRIVE_I = 0;
+        public static final double DRIVE_D = 0;
+
+        public static final double SWERVE_P = 1;
+        public static final double SWERVE_I = 0;
+        public static final double SWERVE_D = 0;
+
+        public static final double MAX_SWERVE_ANGULAR_VELOCITY = 5;
+        public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 5;
     }
 
     public static class Hopper {
