@@ -24,6 +24,8 @@ public class SwerveDriveModule {
     CANEncoder driveEncoder;
     String Name;
 
+    boolean usingMotorEncoder;
+
     private final PIDController drivePIDController = new PIDController(
         RobotMap.SwerveDrive.DRIVE_P, 
         RobotMap.SwerveDrive.DRIVE_I, 
@@ -47,7 +49,9 @@ public class SwerveDriveModule {
     double kEpsilon = 1e-13;
 
 
-    public SwerveDriveModule (CircleGeometry Encoder_Gear, CANSparkMax Drive_Motor, CANSparkMax Encoder_Motor, double x_Distance, double y_Distance, AnalogEncoder Encoder, String name){
+    public SwerveDriveModule (CircleGeometry Encoder_Gear, CANSparkMax Drive_Motor, 
+                            CANSparkMax Encoder_Motor, double x_Distance, double y_Distance, 
+                            AnalogEncoder Encoder, String name){
         
         //Set Variables
         EncoderGear = Encoder_Gear;

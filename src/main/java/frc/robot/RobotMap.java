@@ -71,15 +71,22 @@ public class RobotMap {
         //Gear ratio between Swerve gear and encoder gear
         public static final double ENCODER_GEAR_RATIO = 1;
 
-        //PID
-        public static final double DRIVE_P = 1;
-        public static final double DRIVE_I = 0;
-        public static final double DRIVE_D = 0;
+        //PID Using Ziegler-Nicols Tuning
+        //https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method68858
+        private static final double DRIVE_ULTIMATE_GAIN = 1;
+        private static final double DRIVE_OSCILLATION_PERIOD = 0.25;
+        public static final double DRIVE_P = 0.6 * DRIVE_ULTIMATE_GAIN;
+        public static final double DRIVE_I = 1.2 * DRIVE_ULTIMATE_GAIN / DRIVE_OSCILLATION_PERIOD;
+        public static final double DRIVE_D = 0.075 * DRIVE_ULTIMATE_GAIN * DRIVE_OSCILLATION_PERIOD;
 
-        public static final double SWERVE_P = 1;
-        public static final double SWERVE_I = 0;
-        public static final double SWERVE_D = 0;
 
+        private static final double SWERVE_ULTIMATE_GAIN = 1;
+        private static final double SWERVE_OSCILLATION_PERIOD = 0.25;
+        public static final double SWERVE_P = 0.6 * SWERVE_ULTIMATE_GAIN;
+        public static final double SWERVE_I = 1.2 * SWERVE_ULTIMATE_GAIN/SWERVE_OSCILLATION_PERIOD;
+        public static final double SWERVE_D = 0.075 * SWERVE_ULTIMATE_GAIN * SWERVE_OSCILLATION_PERIOD;
+
+        //Constants to use for Swerve Motion Profile
         public static final double MAX_SWERVE_ANGULAR_VELOCITY = 5;
         public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 5;
     }
