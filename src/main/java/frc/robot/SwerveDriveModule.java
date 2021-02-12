@@ -97,10 +97,8 @@ public class SwerveDriveModule {
         final double swerveFeedforward =
             m_swerveFeedforward.calculate(swerveVelocity);
 
-        // setDriveSpeed(driveOutput + driveFeedforward);
-        // setEncoderSpeed(turnOutput + swerveFeedforward);
-        // setDriveSpeed(0.5);
-        // setEncoderSpeed();
+        setDriveSpeed(driveOutput + driveFeedforward);
+        setEncoderSpeed(turnOutput + swerveFeedforward);
     }
 
     //Checks if turning the other way and inversing speed would be faster

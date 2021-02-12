@@ -1,12 +1,8 @@
 package frc.robot.Subsystems;
 
-import javax.print.CancelablePrintJob;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.AnalogInput;
 
@@ -136,6 +132,31 @@ public class SwerveDrive {
         // LR_SwerveModule.divideVelocity(denominator);
 
         UL_SwerveModule.setDesiredVelocity();
+        // UR_SwerveModule.goToVelocity();
+        // LL_SwerveModule.goToVelocity();
+        // LR_SwerveModule.goToVelocity();
+    }
+
+    public void test(){
+        // double denominator; //To normalize all targets to between -1 and 1
+        double x = OI.driver.getLX();
+        double y = OI.driver.getLY();
+        double r = OI.driver.getRX();
+
+
+
+        // UL_SwerveModule.setVelocity(x, y, r);
+        // UR_SwerveModule.setVelocity(x, y, r);
+        // LL_SwerveModule.setVelocity(x, y, r);
+        // LR_SwerveModule.setVelocity(x, y, r);
+        // // Normalizes values so all motors move to max proportional speed
+        // denominator = maxValue(UL_SwerveModule, UR_SwerveModule, LL_SwerveModule, LR_SwerveModule);
+
+        // UL_SwerveModule.divideVelocity(denominator);
+        // UR_SwerveModule.divideVelocity(denominator);
+        // LL_SwerveModule.divideVelocity(denominator);
+        // LR_SwerveModule.divideVelocity(denominator);
+
         UL_SwerveModule.setEncoderSpeed(x);
         // UR_SwerveModule.goToVelocity();
         // LL_SwerveModule.goToVelocity();

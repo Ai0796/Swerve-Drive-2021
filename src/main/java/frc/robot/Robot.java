@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    OI.update();
+    
   }
 
   @Override
@@ -53,5 +53,7 @@ public class Robot extends TimedRobot {
   public void testInit() {}
 
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    OI.testupdate();
+  }
 }

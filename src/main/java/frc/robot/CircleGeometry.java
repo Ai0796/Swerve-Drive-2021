@@ -2,10 +2,6 @@ package frc.robot;
 
 
 public class CircleGeometry {
-    
-    /*
-    Class is heavily Inspired on 254's code Rotation2d
-    */
 
     protected static double radius_ = Double.NaN;
     protected static double radians_ = Double.NaN;

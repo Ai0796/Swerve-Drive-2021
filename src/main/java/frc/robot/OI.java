@@ -32,6 +32,18 @@ public class OI {
         // updateSDTesting();
     }
 
+    public static void testupdate() {
+        // GENERAL CONTROLS/CONTROL METHODS
+        SmartDashboard.putNumber("Left Stick X Axis", driver.getLX());
+        SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
+        SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
+
+        Robot.swerveDrive.test();
+
+        // updateSD();
+        updateSDTesting();
+    }
+
     // public static void initSD() {
     //     SmartDashboard.putNumber("Upper Left Wheel Speed", Robot.swerveDrive.)
     // }
@@ -56,24 +68,25 @@ public class OI {
 
     }
 
-    // /**
-    //  * Used for updating the SmartDashboard during testing/troubleshooting.
-    //  */
-    // public static void updateSDTesting() {
-    //     SmartDashboard.putNumber("Hopper count", Robot.hopper.getBallCount());
+    /**
+     * Used for updating the SmartDashboard during testing/troubleshooting.
+     */
+    public static void updateSDTesting() {
+        Robot.swerveDrive.updateSD();
+        // SmartDashboard.putNumber("Hopper count", Robot.hopper.getBallCount());
 
-    //     SmartDashboard.putBoolean("Turret left", Robot.turret.getLeftLimit());
-    //     SmartDashboard.putBoolean("Turret right", Robot.turret.getRightLimit());
+        // SmartDashboard.putBoolean("Turret left", Robot.turret.getLeftLimit());
+        // SmartDashboard.putBoolean("Turret right", Robot.turret.getRightLimit());
 
-    //     SmartDashboard.putNumber("Turret Speed", Robot.turret.getSpeed());
-    //     SmartDashboard.putNumber("Turret position", Robot.turret.getCompEncPosition());
-    //     SmartDashboard.putNumber("Limelight X Pos", Robot.camera.getPosition());
-    //     SmartDashboard.putNumber("Calculated RPM", Robot.camera.getCalculatedRPM());
+        // SmartDashboard.putNumber("Turret Speed", Robot.turret.getSpeed());
+        // SmartDashboard.putNumber("Turret position", Robot.turret.getCompEncPosition());
+        // SmartDashboard.putNumber("Limelight X Pos", Robot.camera.getPosition());
+        // SmartDashboard.putNumber("Calculated RPM", Robot.camera.getCalculatedRPM());
 
-    //     SmartDashboard.putNumber("CL_Winch", Robot.climber.getWinchPosition());
-    //     SmartDashboard.putNumber("CL_Arm", Robot.climber.getArmPosition());
-    //     SmartDashboard.putBoolean("CL_Sensor", Robot.climber.getArmDeploy());
+        // SmartDashboard.putNumber("CL_Winch", Robot.climber.getWinchPosition());
+        // SmartDashboard.putNumber("CL_Arm", Robot.climber.getArmPosition());
+        // SmartDashboard.putBoolean("CL_Sensor", Robot.climber.getArmDeploy());
 
-    //     SmartDashboard.putBoolean("Operator Alt Mode", operator.isAltMode());
-    // }
+        // SmartDashboard.putBoolean("Operator Alt Mode", operator.isAltMode());
+    }
 }
