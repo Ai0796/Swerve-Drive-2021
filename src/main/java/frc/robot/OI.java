@@ -90,5 +90,6 @@ public class OI {
         // SmartDashboard.putBoolean("CL_Sensor", Robot.climber.getArmDeploy());
 
         // SmartDashboard.putBoolean("Operator Alt Mode", operator.isAltMode());
+        Robot.swerveDrive.updateSD();
     }
 }

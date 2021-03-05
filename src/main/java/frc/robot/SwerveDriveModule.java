@@ -27,9 +27,8 @@ public class SwerveDriveModule {
     double wheelRadius, wheelCircumference;
     String Name;
     Boolean usingAlternativeEncoder;
-    double initialDistance = 884.199;
 
-    double gear_ratio = 33.75;
+    private final double gear_ratio = 33.75;
 
     private final PIDController drivePIDController = new PIDController(
         RobotMap.SwerveDrive.DRIVE_P, 
@@ -38,9 +37,9 @@ public class SwerveDriveModule {
 
     private final ProfiledPIDController swervePIDController =
         new ProfiledPIDController(
-            1,
-            0,
-            0,
+            RobotMap.SwerveDrive.SWERVE_P,
+            RobotMap.SwerveDrive.SWERVE_I,
+            RobotMap.SwerveDrive.SWERVE_D,
             new TrapezoidProfile.Constraints(
                 RobotMap.SwerveDrive.MAX_SWERVE_ANGULAR_VELOCITY / gear_ratio, RobotMap.SwerveDrive.MAX_SWERVE_ANGULAR_ACCELERATION/gear_ratio));
 

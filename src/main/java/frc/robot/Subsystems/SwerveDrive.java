@@ -145,28 +145,12 @@ public class SwerveDrive {
 
     public void test(){
         // double denominator; //To normalize all targets to between -1 and 1
-        // double x = OI.driver.getLX();
-        // double y = OI.driver.getLY();
-        // double r = OI.driver.getRX();
+        double y = OI.driver.getLY();
+        double y2 = OI.driver.getRY();
 
 
-
-        // UL_SwerveModule.setVelocity(x, y, r);
-        // UR_SwerveModule.setVelocity(x, y, r);
-        // LL_SwerveModule.setVelocity(x, y, r);
-        // LR_SwerveModule.setVelocity(x, y, r);
-        // // Normalizes values so all motors move to max proportional speed
-        // denominator = maxValue(UL_SwerveModule, UR_SwerveModule, LL_SwerveModule, LR_SwerveModule);
-
-        // UL_SwerveModule.divideVelocity(denominator);
-        // UR_SwerveModule.divideVelocity(denominator);
-        // LL_SwerveModule.divideVelocity(denominator);
-        // LR_SwerveModule.divideVelocity(denominator);
-
-        // UL_SwerveModule.setEncoderSpeed(x);
-        // UR_SwerveModule.goToVelocity();
-        // LL_SwerveModule.goToVelocity();
-        // LR_SwerveModule.goToVelocity();
+        UL_SwerveModule.setDriveSpeed(y);
+        UL_SwerveModule.setEncoderSpeed(y2);
     }
 
     /*Uses Gyro to configure inputs in order for the robot 
