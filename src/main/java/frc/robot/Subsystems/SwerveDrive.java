@@ -185,7 +185,7 @@ public class SwerveDrive {
         }else{
             angle = Math.atan(y/x);
         }
-        angle += Math.toRadians(Robot.gyro.getAngle());
+        // angle += Math.toRadians(Robot.gyro.getAngle());
         radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
         return new CircleGeometry(radius, angle);
         

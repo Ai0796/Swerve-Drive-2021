@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.robot.Sensors.Gyro;
+// import frc.robot.Sensors.Gyro;
 import frc.robot.Subsystems.SwerveDrive;
 
 /**
@@ -21,7 +21,7 @@ public class Robot extends TimedRobot {
    */
 
    public static SwerveDrive swerveDrive = SwerveDrive.getInstance();
-   public static Gyro gyro = Gyro.getInstance();
+  //  public static Gyro gyro = Gyro.getInstance();
   
   @Override
   public void robotInit() {}

@@ -11,7 +11,6 @@ public class CircleGeometry {
 
     //Constants
     private double Pi = Math.PI;
-    private static double k2Pi = Math.PI * 2;
     private double kEpsilon = 1e-12;
 
     public CircleGeometry(double radius, double radians) {
@@ -94,6 +93,7 @@ public class CircleGeometry {
 
     public double WrapRadians(double radians) {
         // Wraps radians to be between -pi and pi
+        double k2Pi = Math.PI * 2;
         radians = radians % k2Pi;
         radians = (radians + k2Pi) % k2Pi;
         if (radians > Math.PI)

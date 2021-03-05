@@ -113,7 +113,9 @@ public class SwerveDriveModule {
     public void setVelocity(double x, double y, double r){
         targetWheelSpeed = wheelVectorCalculator(x, y, r);
         targetEncoderLocation = wheelAngleCalculator(x, y, r);
+        SmartDashboard.putBoolean("Reversed", false);
         if(checkFastestTurn(targetEncoderLocation)){
+            SmartDashboard.putBoolean("Reversed", true);
             targetWheelSpeed = targetWheelSpeed * -1;
             targetEncoderLocation = EncoderGear.WrapRadians(targetEncoderLocation + Math.PI);
         }
@@ -160,7 +162,9 @@ public class SwerveDriveModule {
 
     //Checks if turning the other way and inversing speed would be faster
     public boolean checkFastestTurn(double angle){
-        return Math.abs(getSwerveEncoderAngleRadians() - angle) > Math.abs(getSwerveEncoderAngleRadians() - EncoderGear.WrapRadians(angle + Math.PI));
+        // SmartDashboard.putNumber("Turn Method", getSwerveEncoderAngleRadians() - angle);
+        // SmartDashboard.putNumber("Alt Turn Method", getSwerveEncoderAngleRadians() - EncoderGear.WrapRadians(angle + Math.PI));
+        return angle < 0;
     }
 
     public double wheelVectorCalculator(double x, double y, double r){
@@ -180,16 +184,25 @@ public class SwerveDriveModule {
         double angle;
         xVector = x + (r * xDistance);
         yVector = y + (r * yDistance);
-        if(Math.abs(yVector) < kEpsilon){
-            angle = 0;
+        if(Math.abs(xVector) < kEpsilon){
+            angle = Math.PI/2;
+            if(yVector < 0){
+                angle *= -1;
+            }
         }else{
-            angle = Math.atan(xVector/yVector);
+            angle = Math.atan(yVector/xVector);
+            if(angle > 0 && yVector < 0){
+                angle -= Math.PI;
+            }else if(angle < 0 && xVector < 0){
+                angle += Math.PI;
+            }
         }
         return angle;
     }
 
     //The Encoder essentially works like a potentiometer
     //This function call is called repeatedly even with no changes to velocity
+    //Changed function name to make more sense, calls changed function due to lazyness
     public void goToVelocity(){
 
         // //PID Needs testing
