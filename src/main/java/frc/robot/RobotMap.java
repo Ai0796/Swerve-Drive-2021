@@ -53,13 +53,16 @@ public class RobotMap {
         public static final double WHEEL_RADIUS = 2;
 
         //Drive encoder
-        public static final double ENCODER_RESOLUTION = 4096;
+        public static final double ENCODER_RESOLUTION = 42;
 
         //Swerve Gear radius in inches
         public static final double SwerveGearRadius = 1.75;
         
         //Wheel size radius in inches
         public static final double WheelRadius = 2;
+
+        //Max drive speed velocity
+        public static final double MAX_DRIVE_RPM = 2500;
 
         //Wheelbase size
         public static final double wheelbaseWidth = 2; //Change when final robot finished
@@ -87,8 +90,8 @@ public class RobotMap {
         public static final double SWERVE_D = 0.075 * SWERVE_ULTIMATE_GAIN * SWERVE_OSCILLATION_PERIOD;
 
         //Constants to use for Swerve Motion Profile
-        public static final double MAX_SWERVE_ANGULAR_VELOCITY = 5;
-        public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 5;
+        public static final double MAX_SWERVE_ANGULAR_VELOCITY = 600;
+        public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 21169;
     }
 
     public static class Hopper {

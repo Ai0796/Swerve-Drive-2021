@@ -26,6 +26,7 @@ public class OI {
         SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
         SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
 
+        // Robot.swerveDrive.drive();
         Robot.swerveDrive.drive();
 
         updateSD();
@@ -66,6 +67,7 @@ public class OI {
 
         // SmartDashboard.putNumber("Shooter RPM", Robot.shooter.getRPM());
 
+        SmartDashboard.updateValues();
     }
 
     /**

@@ -5,7 +5,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.AnalogInput;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.CircleGeometry;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -32,6 +32,8 @@ public class SwerveDrive {
     // private final double DriveGearRatio;
     // private final double EncoderGearRatio;
     private static SwerveDrive instance;
+
+    double kEpsilon = 1e-13;
 
     public SwerveDrive(){
 
@@ -70,13 +72,11 @@ public class SwerveDrive {
 
         /*Format:
         {Name}_SwerveModule = new SwerveDriveModule({Name}_Swerve, {Name}_DriveMotor, {Name}_EncoderMotor,
-        xPosition, yPosition,
-        {Name}_Encoder, "{Full Name}");
+        xPosition, yPosition,{Name}_Encoder, "{Full Name}");
         */
 
         UL_SwerveModule = new SwerveDriveModule(UL_Swerve, UL_DriveMotor, UL_EncoderMotor, 
-        -RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2, 
-        UL_Encoder, "Upper Left");
+        -RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2, "Upper Left");
 
         // UR_SwerveModule = new SwerveDriveModule(UR_Swerve, UR_DriveMotor, UR_EncoderMotor,
         // RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2,
@@ -116,7 +116,13 @@ public class SwerveDrive {
         double x = OI.driver.getLX();
         double y = OI.driver.getLY();
         double r = OI.driver.getRX();
+        CircleGeometry convertedXY;
 
+        SmartDashboard.putNumber("Encoder Value", ((UL_Encoder.getDistance()/RobotMap.SwerveDrive.MAX_ENCODER_VOLTAGE) - 0.5) * Math.PI);
+
+        // convertedXY = convertInputs(x, y);
+        // x = convertedXY.sin() * convertedXY.getRadius();
+        // y = convertedXY.cos() * convertedXY.getRadius();
 
 
         UL_SwerveModule.setVelocity(x, y, r);
@@ -139,9 +145,9 @@ public class SwerveDrive {
 
     public void test(){
         // double denominator; //To normalize all targets to between -1 and 1
-        double x = OI.driver.getLX();
-        double y = OI.driver.getLY();
-        double r = OI.driver.getRX();
+        // double x = OI.driver.getLX();
+        // double y = OI.driver.getLY();
+        // double r = OI.driver.getRX();
 
 
 
@@ -157,10 +163,32 @@ public class SwerveDrive {
         // LL_SwerveModule.divideVelocity(denominator);
         // LR_SwerveModule.divideVelocity(denominator);
 
-        UL_SwerveModule.setEncoderSpeed(x);
+        // UL_SwerveModule.setEncoderSpeed(x);
         // UR_SwerveModule.goToVelocity();
         // LL_SwerveModule.goToVelocity();
         // LR_SwerveModule.goToVelocity();
+    }
+
+    /*Uses Gyro to configure inputs in order for the robot 
+    to always move in the same x and y directions
+    */
+    public CircleGeometry convertInputs(double x, double y){
+        double angle;
+        double radius;
+        
+        if (Math.abs(x) < kEpsilon){
+            if(y > 0){
+                angle = Math.PI/2;
+            }else{
+                angle = 3 * Math.PI/2;
+            }
+        }else{
+            angle = Math.atan(y/x);
+        }
+        angle += Math.toRadians(Robot.gyro.getAngle());
+        radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+        return new CircleGeometry(radius, angle);
+        
     }
 
     // private double maxValue(SwerveDriveModule UL, SwerveDriveModule UR, SwerveDriveModule LL, SwerveDriveModule LR){
