@@ -118,7 +118,7 @@ public class SwerveDrive {
         double r = OI.driver.getRX();
         CircleGeometry convertedXY;
 
-        SmartDashboard.putNumber("Encoder Value", ((UL_Encoder.getDistance()/RobotMap.SwerveDrive.MAX_ENCODER_VOLTAGE) - 0.5) * Math.PI);
+        // SmartDashboard.putNumber("Encoder Value", ((UL_Encoder.getDistance()/RobotMap.SwerveDrive.MAX_ENCODER_VOLTAGE) - 0.5) * Math.PI);
 
         // convertedXY = convertInputs(x, y);
         // x = convertedXY.sin() * convertedXY.getRadius();

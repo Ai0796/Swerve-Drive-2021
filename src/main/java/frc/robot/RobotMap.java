@@ -46,52 +46,30 @@ public class RobotMap {
         public static final int LL_ENCODER = 2;
         public static final int LR_ENCODER = 3;
 
-        //Encoder Voltage
-        public static final double MAX_ENCODER_VOLTAGE = 5;
-
         //WHEEL RADIUS
-        public static final double WHEEL_RADIUS = 2;
+     public static final double WHEEL_RADIUS = 2;
 
-        //Drive encoder
-        public static final double ENCODER_RESOLUTION = 42;
+     //Drive encoder
+     public static final double ENCODER_RESOLUTION = 42;
 
-        //Swerve Gear radius in inches
-        public static final double SwerveGearRadius = 1.75;
-        
-        //Wheel size radius in inches
-        public static final double WheelRadius = 2;
+     //Swerve Gear radius in inches
+     public static final double SwerveGearRadius = 1.75;
+     
+     //Wheel size radius in inches
+     public static final double WheelRadius = 2;
 
-        //Max drive speed velocity
-        public static final double MAX_DRIVE_RPM = 2500;
+     //Max drive speed velocity
+     public static final double MAX_DRIVE_RPM = 2500;
 
-        //Wheelbase size
-        public static final double wheelbaseWidth = 2; //Change when final robot finished
-        public static final double wheelbaseHeight = 3; //Change when final robot finished
+     //Wheelbase size
+     public static final double wheelbaseWidth = 2; //Change when final robot finished
+     public static final double wheelbaseHeight = 3; //Change when final robot finished
 
-        public static final boolean LEFT_IS_INVERTED = false;
-        public static final boolean RIGHT_IS_INVERTED = true;
+     public static final boolean LEFT_IS_INVERTED = false;
+     public static final boolean RIGHT_IS_INVERTED = true;
 
-        //Gear ratio between Swerve gear and encoder gear
-        public static final double ENCODER_GEAR_RATIO = 1;
-
-        //PID Using Ziegler-Nicols Tuning
-        //https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method68858
-        private static final double DRIVE_ULTIMATE_GAIN = 1;
-        private static final double DRIVE_OSCILLATION_PERIOD = 0.25;
-        public static final double DRIVE_P = 0.6 * DRIVE_ULTIMATE_GAIN;
-        public static final double DRIVE_I = 1.2 * DRIVE_ULTIMATE_GAIN / DRIVE_OSCILLATION_PERIOD;
-        public static final double DRIVE_D = 0.075 * DRIVE_ULTIMATE_GAIN * DRIVE_OSCILLATION_PERIOD;
-
-
-        private static final double SWERVE_ULTIMATE_GAIN = 1;
-        private static final double SWERVE_OSCILLATION_PERIOD = 0.25;
-        public static final double SWERVE_P = 0.6 * SWERVE_ULTIMATE_GAIN;
-        public static final double SWERVE_I = 1.2 * SWERVE_ULTIMATE_GAIN/SWERVE_OSCILLATION_PERIOD;
-        public static final double SWERVE_D = 0.075 * SWERVE_ULTIMATE_GAIN * SWERVE_OSCILLATION_PERIOD;
-
-        //Constants to use for Swerve Motion Profile
-        public static final double MAX_SWERVE_ANGULAR_VELOCITY = 600;
-        public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 21169;
+     //Gear ratio between Swerve gear and encoder gear
+     public static final double ENCODER_GEAR_RATIO = 1;
     }
 
     public static class Hopper {
