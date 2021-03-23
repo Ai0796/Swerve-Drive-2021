@@ -57,11 +57,11 @@ public class SwerveDriveModule {
      public static final double DRIVE_D = 0.075 * DRIVE_ULTIMATE_GAIN * DRIVE_OSCILLATION_PERIOD;
 
 
-     private static final double SWERVE_ULTIMATE_GAIN = 1;
-     private static final double SWERVE_OSCILLATION_PERIOD = 0.05;
-     public static final double SWERVE_P = 0.6 * SWERVE_ULTIMATE_GAIN;
-     public static final double SWERVE_I = 1.2 * SWERVE_ULTIMATE_GAIN/SWERVE_OSCILLATION_PERIOD;
-     public static final double SWERVE_D = 0.075 * SWERVE_ULTIMATE_GAIN * SWERVE_OSCILLATION_PERIOD;
+     private static final double SWERVE_ULTIMATE_GAIN = 3;
+     private static final double SWERVE_OSCILLATION_PERIOD = 0.06;
+     public static final double SWERVE_P = 0.4 * SWERVE_ULTIMATE_GAIN;
+     public static final double SWERVE_I = 0.4 * SWERVE_ULTIMATE_GAIN/SWERVE_OSCILLATION_PERIOD;
+     public static final double SWERVE_D = 0.1 * SWERVE_ULTIMATE_GAIN * SWERVE_OSCILLATION_PERIOD;
 
      //Constants to use for Swerve Motion Profile
      //Measured in rotations per second of the motor
@@ -93,7 +93,7 @@ public class SwerveDriveModule {
     private final ProfiledPIDController swervePIDController =
         new ProfiledPIDController(
             SWERVE_P,
-            SWERVE_I,
+            0,
             SWERVE_D,
             new TrapezoidProfile.Constraints(
                 MAX_SWERVE_ANGULAR_VELOCITY / gear_ratio, MAX_SWERVE_ANGULAR_ACCELERATION/gear_ratio));
@@ -188,10 +188,14 @@ public class SwerveDriveModule {
             double driveOutput =
             drivePIDController.calculate(driveEncoder.getVelocity(), targetWheelSpeed);
 
+            
+
             double driveFeedforward = m_driveFeedforward.calculate(targetWheelSpeed);
 
             // Calculate the turning motor output from the turning PID controller.
             swerveVelocity = (getSwerveEncoderAngleRadians()-EncoderGear.getRadians())/RobotMap.Common.UPDATE_PERIOD;
+
+            // SmartDashboard.putNumber("Encoder Velocity", altSwerveEncoder.getVelocity()/MAX_SWERVE_ANGULAR_VELOCITY/60);
 
             EncoderGear.setRadians(getSwerveEncoderAngleRadians());
 
@@ -203,8 +207,8 @@ public class SwerveDriveModule {
             // double swerveFeedforward = m_swerveFeedforward.calculate(swerveVelocity);
 
 
-            setDriveSpeed(driveOutput * 0.15);
-            setEncoderSpeed(turnOutput + swerveFeedforward);
+            // setDriveSpeed(driveOutput * 0.15);
+            setEncoderSpeed((turnOutput + swerveFeedforward) * 0.8);
             // setDriveSpeed(0.75);
             // setEncoderSpeed(1);
         }
@@ -212,6 +216,11 @@ public class SwerveDriveModule {
             setDriveSpeed(0);
             setEncoderSpeed(0);
         }
+    }
+
+    public void setDesiredVelocityTEST(double p, double i, double d){
+        swervePIDController.setPID(p, i, d);
+        setDesiredVelocity();
     }
 
     //Checks if turning the other way and inversing speed would be faster
@@ -356,6 +365,7 @@ public class SwerveDriveModule {
     }
 
     public void UpdateSD(){
+        SmartDashboard.putNumber("Motor Velocity (RPM)", altSwerveEncoder.getVelocity());
         SmartDashboard.putNumber("Current Speed of " + Name, getCurrentSpeed());
         SmartDashboard.putNumber("Current Encoder Rotation of " + Name, getSwerveEncoderAngleDegrees());
         SmartDashboard.putNumber("SparkMaxPower of" + Name, DriveMotor.get());

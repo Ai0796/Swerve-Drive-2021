@@ -76,7 +76,7 @@ public class SwerveDrive {
         */
 
         UL_SwerveModule = new SwerveDriveModule(UL_Swerve, UL_DriveMotor, UL_EncoderMotor, 
-        -RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2, "Upper Left");
+        -RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2, UL_Encoder, "Upper Left");
 
         // UR_SwerveModule = new SwerveDriveModule(UR_Swerve, UR_DriveMotor, UR_EncoderMotor,
         // RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2,
@@ -151,6 +151,24 @@ public class SwerveDrive {
 
         UL_SwerveModule.setDriveSpeed(y);
         UL_SwerveModule.setEncoderSpeed(y2);
+    }
+
+    public void testPID(double[] PID){
+        double x = OI.driver.getLX();
+        double y = OI.driver.getLY();
+        double r = OI.driver.getRX();
+        CircleGeometry convertedXY;
+
+        // SmartDashboard.putNumber("Encoder Value", ((UL_Encoder.getDistance()/RobotMap.SwerveDrive.MAX_ENCODER_VOLTAGE) - 0.5) * Math.PI);
+
+        // convertedXY = convertInputs(x, y);
+        // x = convertedXY.sin() * convertedXY.getRadius();
+        // y = convertedXY.cos() * convertedXY.getRadius();
+
+
+        UL_SwerveModule.setVelocity(x, y, r);
+
+        UL_SwerveModule.setDesiredVelocityTEST(PID[0], PID[1], PID[2]);
     }
 
     /*Uses Gyro to configure inputs in order for the robot 

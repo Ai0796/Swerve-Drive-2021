@@ -15,6 +15,10 @@ public class OI {
 
     public static ControllerWrapper driver = new ControllerWrapper(RobotMap.Controllers.DRIVER_PORT, true);
 
+    //Used for adjusting PID mid turn
+    public static double PIDVar[] = {0, 0, 0};
+    public static int PIDSelector = 0; //Default to adjusting P
+
     public static void init() {
         // initSD();
     }
@@ -25,9 +29,31 @@ public class OI {
         SmartDashboard.putNumber("Left Stick X Axis", driver.getLX());
         SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
         SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
+        SmartDashboard.putNumber("PID Change Selected", PIDSelector);
+        SmartDashboard.putNumber("P", PIDVar[0]);
+        SmartDashboard.putNumber("I", PIDVar[1]);
+        SmartDashboard.putNumber("D", PIDVar[2]);
+
+
 
         // Robot.swerveDrive.drive();
-        Robot.swerveDrive.drive();
+        Robot.swerveDrive.testPID(PIDVar);
+
+        if(driver.bA.get()){
+            PIDSelector = 0;
+        }
+        else if(driver.bB.get()){
+            PIDSelector = 1;
+        }
+        else if(driver.bY.get()){
+            PIDSelector = 2;
+        }
+        if(driver.bRT.get()){
+            PIDVar[PIDSelector] += 0.01;
+        }
+        else if(driver.bLT.get()){
+            PIDVar[PIDSelector] -= 0.01;
+        }
 
         updateSD();
         // updateSDTesting();
