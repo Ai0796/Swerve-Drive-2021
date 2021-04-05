@@ -225,9 +225,9 @@ public class SwerveDriveModule {
 
     //Checks if turning the other way and inversing speed would be faster
     public boolean checkFastestTurn(double angle){
-        // SmartDashboard.putNumber("Turn Method", getSwerveEncoderAngleRadians() - angle);
-        // SmartDashboard.putNumber("Alt Turn Method", getSwerveEncoderAngleRadians() - EncoderGear.WrapRadians(angle + Math.PI));
-        return angle < 0;
+        SmartDashboard.putNumber("Turn Method", EncoderGear.WrapRadians(getSwerveEncoderAngleRadians() - angle));
+        SmartDashboard.putNumber("Alt Turn Method", EncoderGear.WrapRadians(getSwerveEncoderAngleRadians() - angle - Math.PI));
+        return Math.abs(EncoderGear.WrapRadians(getSwerveEncoderAngleRadians() - angle)) > Math.abs(EncoderGear.WrapRadians(getSwerveEncoderAngleRadians() - angle - Math.PI));
     }
 
     /*
@@ -365,7 +365,7 @@ public class SwerveDriveModule {
     }
 
     public void UpdateSD(){
-        SmartDashboard.putNumber("Motor Velocity (RPM)", altSwerveEncoder.getVelocity());
+        // SmartDashboard.putNumber("Motor Velocity (RPM)", altSwerveEncoder.getVelocity());
         SmartDashboard.putNumber("Current Speed of " + Name, getCurrentSpeed());
         SmartDashboard.putNumber("Current Encoder Rotation of " + Name, getSwerveEncoderAngleDegrees());
         SmartDashboard.putNumber("SparkMaxPower of" + Name, DriveMotor.get());

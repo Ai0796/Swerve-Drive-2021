@@ -15,9 +15,7 @@ public class OI {
 
     public static ControllerWrapper driver = new ControllerWrapper(RobotMap.Controllers.DRIVER_PORT, true);
 
-    //Used for adjusting PID mid turn
-    public static double PIDVar[] = {0, 0, 0};
-    public static int PIDSelector = 0; //Default to adjusting P
+    
 
     public static void init() {
         // initSD();
@@ -29,10 +27,32 @@ public class OI {
         SmartDashboard.putNumber("Left Stick X Axis", driver.getLX());
         SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
         SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
+        updateSD();
+        // updateSDTesting();
+    }
+
+//Used for adjusting PID mid turn
+public static double PIDVar[] = {0, 0, 0};
+public static int PIDSelector = 0; //Default to adjusting P
+public static boolean debounce = false;
+public static double increment = 1;
+public static boolean buttonVal[] = {driver.bRB.get(), driver.bLB.get(), driver.bRT.get(), driver.bLT.get()};
+    
+    public static void testinit(){
+        
+    }
+
+    public static void testupdate() {
+        // GENERAL CONTROLS/CONTROL METHODS
+        SmartDashboard.putNumber("Left Stick X Axis", driver.getLX());
+        SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
+        SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
         SmartDashboard.putNumber("PID Change Selected", PIDSelector);
         SmartDashboard.putNumber("P", PIDVar[0]);
         SmartDashboard.putNumber("I", PIDVar[1]);
         SmartDashboard.putNumber("D", PIDVar[2]);
+        SmartDashboard.putBoolean("debounce", debounce);
+        SmartDashboard.putNumber("Increment", increment);
 
 
 
@@ -48,27 +68,42 @@ public class OI {
         else if(driver.bY.get()){
             PIDSelector = 2;
         }
-        if(driver.bRT.get()){
-            PIDVar[PIDSelector] += 0.01;
+
+
+        buttonVal[0] = driver.bRB.get();
+        buttonVal[1] = driver.bLB.get();
+        buttonVal[2] = driver.bRT.get();
+        buttonVal[3] = driver.bLT.get();
+        SmartDashboard.putBooleanArray("Controller Values", buttonVal);
+        
+        if(driver.bRB.get()){
+            if(debounce){
+                increment *= 10;
+                debounce = false;
+            }
+        }
+        else if(driver.bLB.get()){
+            if(debounce){
+                increment /= 10;
+                debounce = false;
+            }
+        }
+        else if(driver.bRT.get()){
+            if(debounce){
+                PIDVar[PIDSelector] += increment;
+                debounce = false;
+            }
         }
         else if(driver.bLT.get()){
-            PIDVar[PIDSelector] -= 0.01;
+            if(debounce){
+                PIDVar[PIDSelector] -= increment;
+                debounce = false;
+            }
         }
-
+        else{
+            debounce = true;
+        }
         updateSD();
-        // updateSDTesting();
-    }
-
-    public static void testupdate() {
-        // GENERAL CONTROLS/CONTROL METHODS
-        SmartDashboard.putNumber("Left Stick X Axis", driver.getLX());
-        SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
-        SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
-
-        Robot.swerveDrive.test();
-
-        // updateSD();
-        updateSDTesting();
     }
 
     // public static void initSD() {

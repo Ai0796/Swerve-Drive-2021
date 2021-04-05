@@ -266,8 +266,8 @@ public class RobotMap {
         public static final int RX = 2; // Arcade drive
 
         public static final int RY = 5;
-        public static final int LT = 2;
-        public static final int RT = 3;
+        public static final int LT = 3;
+        public static final int RT = 4;
 
         public static final int POV = 0; // untested
     }

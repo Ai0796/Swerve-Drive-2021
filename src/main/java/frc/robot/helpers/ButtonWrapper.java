@@ -64,6 +64,7 @@ public class ButtonWrapper extends Trigger {
         }
         else if (isTrigger) {
             return this.controller.getRawAxis(this.id) > 0.5 || this.controller.getRawAxis(this.id) < -0.5;
+            // return this.controller.getRawAxis(this.id) > 0.5; Playstation has two seperate Axes for 
         }
         return this.controller.getRawButton(this.id);
     }
