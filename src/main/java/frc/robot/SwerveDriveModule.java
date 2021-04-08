@@ -21,37 +21,37 @@ public class SwerveDriveModule {
     */
 
      //Encoder Voltage
-     public static final double MAX_ENCODER_VOLTAGE = 5;
+     public static final double MAX_ENCODER_VOLTAGE = 5; //UNTESTED
 
      //WHEEL RADIUS
-     public static final double WHEEL_RADIUS = 2;
+     public static final double WHEEL_RADIUS = 2; //UNTESTED
 
      //Drive encoder
-     public static final double ENCODER_RESOLUTION = 42;
+     public static final double ENCODER_RESOLUTION = 42; //UNTESTED
 
      //Swerve Gear radius in inches
-     public static final double SwerveGearRadius = 1.75;
+     public static final double SwerveGearRadius = 1.75; //UNTESTED
      
      //Wheel size radius in inches
-     public static final double WheelRadius = 2;
+     public static final double WheelRadius = 2; //UNTESTED
 
      //Max drive speed velocity
-     public static final double MAX_DRIVE_RPM = 2500;
+     public static final double MAX_DRIVE_RPM = 2500; //UNTESTED
 
      //Wheelbase size
      public static final double wheelbaseWidth = 2; //Change when final robot finished
      public static final double wheelbaseHeight = 3; //Change when final robot finished
 
-     public static final boolean LEFT_IS_INVERTED = false;
-     public static final boolean RIGHT_IS_INVERTED = true;
+     public static final boolean LEFT_IS_INVERTED = false; //UNTESTED
+     public static final boolean RIGHT_IS_INVERTED = true; //UNTESTED
 
      //Gear ratio between Swerve gear and encoder gear
-     public static final double ENCODER_GEAR_RATIO = 1;
+     public static final double ENCODER_GEAR_RATIO = 1; //UNTESTED
 
      //PID Using Ziegler-Nicols Tuning
      //https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method68858
-     private static final double DRIVE_ULTIMATE_GAIN = 1;
-     private static final double DRIVE_OSCILLATION_PERIOD = 0.05;
+     private static final double DRIVE_ULTIMATE_GAIN = 1; //UNTESTED
+     private static final double DRIVE_OSCILLATION_PERIOD = 0.05; //UNTESTED
      public static final double DRIVE_P = 0.6 * DRIVE_ULTIMATE_GAIN;
      public static final double DRIVE_I = 1.2 * DRIVE_ULTIMATE_GAIN / DRIVE_OSCILLATION_PERIOD;
      public static final double DRIVE_D = 0.075 * DRIVE_ULTIMATE_GAIN * DRIVE_OSCILLATION_PERIOD;
@@ -65,7 +65,7 @@ public class SwerveDriveModule {
 
      //Constants to use for Swerve Motion Profile
      //Measured in rotations per second of the motor
-     public static final double MAX_SWERVE_ANGULAR_VELOCITY = 195.8333333;
+     public static final double MAX_SWERVE_ANGULAR_VELOCITY = 2000;
      //Measured in rotations per second squared of the motor
      public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 23500;
     /*Constants Finished
