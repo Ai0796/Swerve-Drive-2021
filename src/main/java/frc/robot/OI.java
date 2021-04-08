@@ -31,6 +31,10 @@ public class OI {
         // updateSDTesting();
     }
 
+
+
+
+//----------------------------TESTING----------------------------
 //Used for adjusting PID mid turn
 public static double PIDVar[] = {0, 0, 0};
 public static int PIDSelector = 0; //Default to adjusting P
