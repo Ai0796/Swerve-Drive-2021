@@ -18,3 +18,12 @@ Despite these abilities Swerve also lacks in some departments:
 * Incredibly expensive to produce in comparison to other drives
 * Much more complicated to program, to the point that this documentation is almost necessary
 * Break easily in comparison to other drives
+
+So What is a Swerve Drive?
+--------------------------
+
+.. Standard Drive Trains::
+A standard drive has a left and right set of wheels and cannot turn the wheels at all. They are essentially stuck only moving in a pitch
+
+
+
