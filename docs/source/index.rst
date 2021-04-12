@@ -11,3 +11,12 @@ Welcome to Swerve Drive's documentation!
    :caption: Contents:
 
    intro/introduction
+
+Math Required to understand Swerve Drive
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Math Required to Understand Swerve
+   
+   math/kinematics
