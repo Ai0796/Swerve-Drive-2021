@@ -22,8 +22,14 @@ Despite these abilities Swerve also lacks in some departments:
 So What is a Swerve Drive?
 --------------------------
 
-.. Standard Drive Trains::
-A standard drive has a left and right set of wheels and cannot turn the wheels at all. They are essentially stuck only moving in a pitch
+.. seealso:: A standard drive has a left and right set of wheels and cannot turn the wheels at all. They are essentially stuck only moving in a pitch.
 
+Swerve Drives control both the pitch and the yaw of the wheel. In order to control both the wheel and the direction it is headed 
 
+The usual example for this is a shopping cart, if you've been to places like Walmart you look at the front wheels of a shopping cart, the wheels are able to rotate which is the fundamental principle of a swerve drive.
+
+..figure:: /_static/images/intro/Rotations.png
+   :figwidth: 500px
+   :target: /_static/images/intro/Rotations.png
+   :align: center
 
