@@ -10,7 +10,7 @@ Welcome to Swerve Drive's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   _sources/intro/introduction
+   intro/introduction
 
 
 
