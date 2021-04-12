@@ -11,12 +11,3 @@ Welcome to Swerve Drive's documentation!
    :caption: Contents:
 
    intro/introduction
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
