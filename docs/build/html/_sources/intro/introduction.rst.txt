@@ -28,7 +28,7 @@ Swerve Drives control both the pitch and the yaw of the wheel. In order to contr
 
 The usual example for this is a shopping cart, if you've been to places like Walmart you look at the front wheels of a shopping cart, the wheels are able to rotate which is the fundamental principle of a swerve drive.
 
-..figure:: /_static/images/intro/Rotations.png
+.. figure:: /_static/images/intro/Rotations.png
    :figwidth: 500px
    :target: /_static/images/intro/Rotations.png
    :align: center
