@@ -17,6 +17,6 @@ Math Required to understand Swerve Drive
 
 .. toctree::
    :maxdepth: 1
-   :caption: Math Required to Understand Swerve
+   :caption: Physics Concepts
    
    math/kinematics

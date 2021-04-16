@@ -90,7 +90,15 @@
 </ul>
 <p class="caption"><span class="caption-text">Math Required to Understand Swerve</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Math of a Swerve Drive</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Math of a Swerve Drive</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kinematics">Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distance">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#speed">Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#direction">Direction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#velocity">Velocity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acceleration">Acceleration</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -167,6 +175,61 @@
 <li><p>Rotational force, which you can think as a force that rotates an object</p></li>
 </ul>
 <p>We can combine these two forces using kinematics in order to move in any direction and rotation at the same time!</p>
+<div class="section" id="kinematics">
+<h2>Kinematics<a class="headerlink" href="#kinematics" title="Permalink to this headline">¶</a></h2>
+<p>Kinematics is a field of physics used to describe motion of points and objects, it is sometimes also known as the geometry of motion. Kinematics deals with how an object moves without looking at the cause</p>
+<p>Usual terms you'll hear for kinematics are:</p>
+<ul class="simple">
+<li><p>Distance</p></li>
+<li><p>Speed</p></li>
+<li><p>Direction</p></li>
+<li><p>Velocity</p></li>
+<li><p>Acceleration</p></li>
+<li><p>etc.</p></li>
+</ul>
+</div>
+<div class="section" id="distance">
+<h2>Distance<a class="headerlink" href="#distance" title="Permalink to this headline">¶</a></h2>
+<p>Distance is simply enough the amount that an object has moved over time. It's the most basic part of kinematics and you'll use it a lot if you ever plan to take any math or physics class</p>
+<p>Usual measurements in FRC:</p>
+<ul class="simple">
+<li><p>in (inches)</p></li>
+<li><p>ft (feet) &lt;- most our measurements are in imperial and usually aren't big enough to use feet</p></li>
+<li><p>m (meters)</p></li>
+<li><p>mm (milimeters)</p></li>
+</ul>
+</div>
+<div class="section" id="speed">
+<h2>Speed<a class="headerlink" href="#speed" title="Permalink to this headline">¶</a></h2>
+<p>Everything with Kinematics starts with speed (and direction), a speed is how fast an object moves over a given time period.</p>
+<p>Usual endings in FRC:</p>
+<ul class="simple">
+<li><p>ft/s (feet per second) &lt;- We use ft/s for pretty much everything</p></li>
+<li><p>mph (miles per hours)</p></li>
+<li><p>m/s (meters per second)</p></li>
+</ul>
+</div>
+<div class="section" id="direction">
+<h2>Direction<a class="headerlink" href="#direction" title="Permalink to this headline">¶</a></h2>
+<p>The course that an object takes. We usually only use relative direction (Left, right, forwards, etc.) in FRC due to our gyrometer working relative to the robot.</p>
+</div>
+<div class="section" id="velocity">
+<h2>Velocity<a class="headerlink" href="#velocity" title="Permalink to this headline">¶</a></h2>
+<p>The difference between speed and velocity is that velocity is directed towards a direction. For instance, speed would be saying I'm walking, while velocity would be I'm walking forwards.</p>
+</div>
+<div class="section" id="acceleration">
+<h2>Acceleration<a class="headerlink" href="#acceleration" title="Permalink to this headline">¶</a></h2>
+<p>Acceleration is one of the fun niche concepts that you basically have to know to understand a swerve drive (along with possibly jerk). Acceleration is a change in velocity over time. For example, when you drop an apple it doesn't fall at a constant speed, as it falls it speeds up, that's acceleration.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Jerk is the change in acceleration over time, usually robotics never has to go into jerk, but since swerving works in such a small rotation, using jerk could save multiple seconds in a 150 second match.</p>
+</div>
+<p>Usual units of acceleration that we use are:</p>
+<ul class="simple">
+<li><p>ft/s^2(feet per second squared)</p></li>
+<li><p>m/s^2 (meter per second squared)</p></li>
+</ul>
+</div>
 </div>
 
 
