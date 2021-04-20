@@ -4,11 +4,11 @@
 <html class="writer-html5" lang="Java" >
 <head>
   <meta charset="utf-8" />
-  <meta content="Introduction to Rotational Kinematics" lang="en" name="description" xml:lang="en" />
+  <meta content="Enough Calc for FRC" lang="en" name="description" xml:lang="en" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Rotational Force &mdash; Swerve Drive 0.1 documentation</title>
+  <title>FRC Calculus &mdash; Swerve Drive 0.1 documentation</title>
   
 
   
@@ -38,8 +38,7 @@
 
     
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Basic Terms in Kinematics" href="kinematics.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,14 +88,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/introduction.html">Introduction to Swerve Drives</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Physics Concepts</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="kinematics.html">Basic Terms in Kinematics</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Rotational Force</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#angular-displacement">Angular Displacement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rotational-velocity">Rotational Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#further-information">Further information</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="rotation.html">Rotational Force</a></li>
 </ul>
 
             
@@ -145,13 +139,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Rotational Force</li>
+      <li>FRC Calculus</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/math/rotation.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/math/calculus.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -164,40 +158,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="rotational-force">
-<h1>Rotational Force<a class="headerlink" href="#rotational-force" title="Permalink to this headline">¶</a></h1>
-<p>Wheels, which you will find are used a lot in robotics, cannot be calculated with translational kinematics, instead they require rotational kinematics, which are used to calculate:</p>
-<ul class="simple">
-<li><p>Angular Displacement</p></li>
-<li><p>Rotational Velocity</p></li>
-<li><p>Rotational Acceleration</p></li>
-</ul>
-<p>In most cases in FRC, rotational calculations aren't very complicated as they usually are converted to translational units anyways.</p>
-<div class="section" id="angular-displacement">
-<h2>Angular Displacement<a class="headerlink" href="#angular-displacement" title="Permalink to this headline">¶</a></h2>
-<p>Angular Displacement commonly uses <a class="reference external" href="https://en.wikipedia.org/wiki/Radian">radians</a> in order to calculate how much a wheel has rotated from it's starting position. This is typically used in Swerves and Auton to rotate an object the correct distance and/or orientation.</p>
-</div>
-<div class="section" id="rotational-velocity">
-<h2>Rotational Velocity<a class="headerlink" href="#rotational-velocity" title="Permalink to this headline">¶</a></h2>
-<p>Rotational Velocity is the change in Angular Displacement over a unit of time. Typically in FRC you will see units such as:</p>
-<ul class="simple">
-<li><p>rpm (rotations per minute) &lt;- Unit used by most encoders</p></li>
-<li><p>rps (rotations per second)</p></li>
-<li><p>radians per second</p></li>
-<li><p>degrees per second</p></li>
-</ul>
-<p>Rotational Velocity is commonly converted into Translational velocity by either:</p>
-<ul class="simple">
-<li><p>for rpm and rps multiply the value by the circumference of the wheel (make sure to transfer the seconds or minutes)</p></li>
-<li><p>for radians divide the value by 2pi and multiply by circumference</p></li>
-<li><p>for degrees divide by 360 and multiple by circumference</p></li>
-</ul>
-<p>Rotational Acceleration is the change in Rotational Velocity, acceleration typically does not play a massive effect in FRC since motors can accelerate to max velocity in less than a second in normal conditions</p>
-</div>
-<div class="section" id="further-information">
-<h2>Further information<a class="headerlink" href="#further-information" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Rotation_around_a_fixed_axis">Wikipedia Page</a></p>
-</div>
+  <div class="section" id="frc-calculus">
+<h1>FRC Calculus<a class="headerlink" href="#frc-calculus" title="Permalink to this headline">¶</a></h1>
+<p>Good news if you dreaded learning (single variable) calculus for FRC, you barely need to know it, I'd argue that you don't need to know it at all if you never want to understand a PID</p>
+<p>Calculus is almost exclusively used in two things for FRC, PID (Proportional, Integral, Derivative) and advanced Motion Profilling, neither of which actually use calculus.</p>
+<p>The two fundamental concepts of Calculus are Derivatives and Integrals</p>
+<p>Derivatives</p>
 </div>
 
 
@@ -205,9 +171,6 @@
            
           </div>
           <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="kinematics.html" class="btn btn-neutral float-left" title="Basic Terms in Kinematics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
 
   <hr/>
 

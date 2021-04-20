@@ -137,6 +137,7 @@ public class SwerveDriveModule {
         usingAlternativeEncoder = false;
     }
 
+    //Starts the system using Neo 550 swerve, used for debugging
     public SwerveDriveModule(CircleGeometry Encoder_Gear, CANSparkMax Drive_Motor, 
     CANSparkMax Encoder_Motor, double x_Distance, double y_Distance, String name){
         //Set Variables
@@ -207,8 +208,8 @@ public class SwerveDriveModule {
             // double swerveFeedforward = m_swerveFeedforward.calculate(swerveVelocity);
 
 
-            // setDriveSpeed(driveOutput * 0.15);
-            setEncoderSpeed((turnOutput + swerveFeedforward) * 0.8);
+            setDriveSpeed(driveOutput * 0.15);
+            setEncoderSpeed(turnOutput + swerveFeedforward);
             // setDriveSpeed(0.75);
             // setEncoderSpeed(1);
         }
@@ -276,18 +277,6 @@ public class SwerveDriveModule {
             }
         }
         return angle;
-    }
-
-    //The Encoder essentially works like a potentiometer
-    //This function call is called repeatedly even with no changes to velocity
-    //Changed function name to make more sense, calls changed function due to lazyness
-    public void goToVelocity(){
-
-        // //PID Needs testing
-        // double encoderSpeed = PID(targetEncoderLocation, 1, 0, 0);
-        // setDriveSpeed(targetWheelSpeed);
-        // setEncoderSpeed(encoderSpeed);
-        setDesiredVelocity();
     }
 
     /*

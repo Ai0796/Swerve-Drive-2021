@@ -131,15 +131,17 @@ public class SwerveDrive {
         // Normalizes values so all motors move to max proportional speed
         double denominator = maxValue(UL_SwerveModule, UR_SwerveModule, LL_SwerveModule, LR_SwerveModule);
 
-        UL_SwerveModule.divideVelocity(denominator);
-        UR_SwerveModule.divideVelocity(denominator);
-        LL_SwerveModule.divideVelocity(denominator);
-        LR_SwerveModule.divideVelocity(denominator);
-
+        if(denominator > 1){
+            UL_SwerveModule.divideVelocity(denominator);
+            UR_SwerveModule.divideVelocity(denominator);
+            LL_SwerveModule.divideVelocity(denominator);
+            LR_SwerveModule.divideVelocity(denominator);
+        }
+        
         UL_SwerveModule.setDesiredVelocity();
-        UR_SwerveModule.goToVelocity();
-        LL_SwerveModule.goToVelocity();
-        LR_SwerveModule.goToVelocity();
+        UR_SwerveModule.setDesiredVelocity();
+        LL_SwerveModule.setDesiredVelocity();
+        LR_SwerveModule.setDesiredVelocity();
     }
 
     public void test(){

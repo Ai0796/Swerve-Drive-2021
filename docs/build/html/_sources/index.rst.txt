@@ -20,3 +20,4 @@ Math Required to understand Swerve Drive
    :caption: Physics Concepts
    
    math/kinematics
+   math/rotation
