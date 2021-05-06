@@ -76,7 +76,8 @@ public class SwerveDrive {
         */
 
         UL_SwerveModule = new SwerveDriveModule(UL_Swerve, UL_DriveMotor, UL_EncoderMotor, 
-        -RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2, UL_Encoder, "Upper Left");
+        -RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2, 
+        UL_Encoder, "Upper Left");
 
         UR_SwerveModule = new SwerveDriveModule(UR_Swerve, UR_DriveMotor, UR_EncoderMotor,
         RobotMap.SwerveDrive.wheelbaseWidth/2, RobotMap.SwerveDrive.wheelbaseHeight/2,
@@ -118,9 +119,10 @@ public class SwerveDrive {
         double r = OI.driver.getRX();
         CircleGeometry convertedXY;
 
-        convertedXY = convertInputs(x, y);
-        x = convertedXY.sin() * convertedXY.getRadius();
-        y = convertedXY.cos() * convertedXY.getRadius();
+        //I really don't know how the Gyro works
+        // convertedXY = convertInputs(x, y);
+        // x = convertedXY.sin() * convertedXY.getRadius();
+        // y = convertedXY.cos() * convertedXY.getRadius();
 
 
         UL_SwerveModule.setVelocity(x, y, r);

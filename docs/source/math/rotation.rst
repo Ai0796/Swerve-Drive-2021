@@ -1,4 +1,4 @@
-Rotational Force
+Rotational Kinematics
 ===========================
 
 .. meta::

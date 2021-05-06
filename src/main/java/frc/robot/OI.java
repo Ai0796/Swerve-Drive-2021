@@ -28,7 +28,7 @@ public class OI {
         SmartDashboard.putNumber("Left Stick Y Axis", driver.getLY());
         SmartDashboard.putNumber("Right Stick X Axis", driver.getRX());
         updateSD();
-        // updateSDTesting();
+        Robot.swerveDrive.drive();
     }
 
 

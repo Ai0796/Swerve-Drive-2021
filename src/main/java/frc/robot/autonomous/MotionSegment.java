@@ -1,4 +1,4 @@
-kpackage frc.robot.autonomous;
+package frc.robot.autonomous;
 
 public class MotionSegment {
     

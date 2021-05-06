@@ -59,15 +59,23 @@ public class SwerveDriveModule {
 
      private static final double SWERVE_ULTIMATE_GAIN = 3;
      private static final double SWERVE_OSCILLATION_PERIOD = 0.06;
-     public static final double SWERVE_P = 0.4 * SWERVE_ULTIMATE_GAIN;
-     public static final double SWERVE_I = 0.4 * SWERVE_ULTIMATE_GAIN/SWERVE_OSCILLATION_PERIOD;
-     public static final double SWERVE_D = 0.1 * SWERVE_ULTIMATE_GAIN * SWERVE_OSCILLATION_PERIOD;
+    
+     public static final double SWERVE_P = 0.33 * SWERVE_ULTIMATE_GAIN;
+     public static final double SWERVE_I = 1.75 * SWERVE_ULTIMATE_GAIN / SWERVE_OSCILLATION_PERIOD;
+     public static final double SWERVE_D = 0.11 * SWERVE_ULTIMATE_GAIN * SWERVE_OSCILLATION_PERIOD;
+     
+    //  public static final double SWERVE_P = .66;
+    //  public static final double SWERVE_I = 1;
+    //  public static final double SWERVE_D = 0.1;
+
 
      //Constants to use for Swerve Motion Profile
-     //Measured in rotations per second of the motor
-     public static final double MAX_SWERVE_ANGULAR_VELOCITY = 2000;
-     //Measured in rotations per second squared of the motor
-     public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 23500;
+     
+     private static final double gear_ratio = 33.75;
+     //Measured in radians per second of the motor 
+     public static final double MAX_SWERVE_ANGULAR_VELOCITY = 1230 / gear_ratio;
+     //Measured in radians per second squared of the motor
+     public static final double MAX_SWERVE_ANGULAR_ACCELERATION = 41015 / gear_ratio;
     /*Constants Finished
     */
 
@@ -83,7 +91,7 @@ public class SwerveDriveModule {
     String Name;
     Boolean usingAlternativeEncoder;
 
-    private final double gear_ratio = 33.75;
+    
 
     private final PIDController drivePIDController = new PIDController(
         DRIVE_P, 
@@ -93,10 +101,10 @@ public class SwerveDriveModule {
     private final ProfiledPIDController swervePIDController =
         new ProfiledPIDController(
             SWERVE_P,
-            0,
+            SWERVE_I,
             SWERVE_D,
             new TrapezoidProfile.Constraints(
-                MAX_SWERVE_ANGULAR_VELOCITY / gear_ratio, MAX_SWERVE_ANGULAR_ACCELERATION/gear_ratio));
+                MAX_SWERVE_ANGULAR_VELOCITY, MAX_SWERVE_ANGULAR_ACCELERATION));
 
   // Gains are for example purposes only - must be determined for your own robot!
   private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(1, 3);
@@ -208,7 +216,8 @@ public class SwerveDriveModule {
             // double swerveFeedforward = m_swerveFeedforward.calculate(swerveVelocity);
 
 
-            setDriveSpeed(driveOutput * 0.15);
+            setDriveSpeed(driveOutput + driveFeedforward);
+            if(turnOutput > 0.)
             setEncoderSpeed(turnOutput + swerveFeedforward);
             // setDriveSpeed(0.75);
             // setEncoderSpeed(1);
@@ -322,7 +331,7 @@ public class SwerveDriveModule {
         if(usingAlternativeEncoder){
             return EncoderGear.WrapRadians(altSwerveEncoder.getPosition() / gear_ratio * 2 * Math.PI);
         }
-        return ((swerveEncoder.getDistance()/MAX_ENCODER_VOLTAGE)) * 2 * Math.PI;
+        return EncoderGear.WrapRadians(((swerveEncoder.getDistance()/MAX_ENCODER_VOLTAGE)) * 2 * Math.PI);
     }
 
 
